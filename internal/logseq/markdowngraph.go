@@ -36,5 +36,5 @@ func (g *MarkdownGraph) AppendJournal(d civil.Date, entries ...string) (string, 
 }
 
 func (g *MarkdownGraph) AppendJournalToday(entries ...string) (string, error) {
-	return g.AppendJournal(civil.DateOf(time.Now()))
+	return g.AppendJournal(civil.DateOf(time.Now()), entries...)
 }
