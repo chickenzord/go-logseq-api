@@ -27,7 +27,7 @@ func (g *MarkdownGraph) AppendJournal(d civil.Date, entries ...string) (string, 
 
 	for _, entry := range entries {
 		content := strings.ReplaceAll(entry, "\n", " ")
-		if _, err := fmt.Fprintf(f, "- %s\n", content); err != nil {
+		if _, err := fmt.Fprintf(f, "\n- %s", content); err != nil {
 			return "", err
 		}
 	}
