@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
 
 	"github.com/chickenzord/go-logseq-api/internal/logseq"
 	"github.com/joho/godotenv"
@@ -13,7 +14,12 @@ import (
 func main() {
 	_ = godotenv.Overload()
 
-	g := logseq.MarkdownGraph{BaseDir: "."}
+	baseDir := "."
+	if d := os.Getenv("LOGSEQ_BASE_DIR"); d != "" {
+		baseDir = d
+	}
+
+	g := logseq.MarkdownGraph{BaseDir: baseDir}
 
 	e := echo.New()
 	e.POST("/journals/today", func(c echo.Context) error {
